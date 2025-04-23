@@ -14,8 +14,6 @@ const mainMenu = document.querySelector(".mobile-menu");
 //   }
 // });
 
-
-
 if (mobileMenuToggle) {
   mobileMenuToggle.addEventListener("click", () => {
     mainMenu.classList.toggle("active");
@@ -47,6 +45,7 @@ const translations = {
       "Makka",
       "Yaponiya",
     ],
+    payment: "Onlayn to‘lov",
     hero_title: "ORZUINGIZ MANZILIGA SAYOHAT",
     hero_subtitle:
       "O'zingiz uchun orzular dunyosini kashf eting! Noyob turlar, shaxsiy yondashuv va unutilmas taassurotlar",
@@ -114,6 +113,9 @@ const translations = {
       "Professional yondashuv va tafsilotlarga e’tibor. Bellis Travel tufayli ta’tilimiz juda ajoyib o‘tdi. Yana albatta murojaat qilamiz!",
       "Zo‘r tashkil etilgan sayohat uchun rahmat! Har bir narsa mayda detallarigacha o‘ylab chiqilgan edi. Bellis Travel — sifatni qadrlovchilar uchun eng yaxshi tanlov.",
     ],
+    bron: "Qulay va xavfsiz! Tezkor to’lovlar orqali unutilmas sarguzashtingizni bron qiling!",
+    info: "Ma'lumotlar",
+    rekvisits: "Kompaniya Rekvizitlari",
   },
   ru: {
     main_menu: ["Главная", "О компани", "Туры", "Отзывы", "Контакты"],
@@ -122,6 +124,7 @@ const translations = {
     hero_subtitle:
       "Откройте для себя мир мечты! Уникальные туры, персональный подход и незабываемые впечатления",
     book_button: "ЗАБРОНИРОВАТЬ",
+    payment: "Онлайн оплата",
     features_titles: [
       "Индивидуальный подход",
       "Высокий уровень сервиса",
@@ -175,7 +178,10 @@ const translations = {
       "Спасибо за прекрасно организованное путешествие! Все было продумано до мелочей. Bellis Travel — лучший выбор для тех, кто ценит качество.",
     ],
     authors: ["Анна Иванова", "Сергей Петров", "Елена Смирнова"],
-    tours   : ["Тур в Турцию", "Тур на Мальдивы", "Тур в Египет"],
+    tours: ["Тур в Турцию", "Тур на Мальдивы", "Тур в Египет"],
+    bron: "Удобно и безопасно! Забронируйте своё незабываемое приключение с помощью мгновенной оплаты!",
+    info: "Информация",
+    rekvisits: "Реквизиты компании",
   },
   en: {
     main_menu: ["Home", "About", "Tours", "Testimonials", "Contacts"],
@@ -184,6 +190,8 @@ const translations = {
     hero_subtitle:
       "Discover the world of dreams! Unique tours, personal approach and unforgettable impressions",
     book_button: "BOOK NOW",
+    payment: "Online payment",
+    bron: "Convenient and secure! Book your unforgettable adventure with fast payments!",
     features_titles: [
       "Individual approach",
       "High level of service",
@@ -238,6 +246,8 @@ const translations = {
     ],
     authors: ["Anna Ivanova", "Sergey Petrov", "Elena Smirnova"],
     tours: ["Tour to Turkey", "Tour to the Maldives", "Tour to Egypt"],
+    info: "Information",
+    rekvisits: "Company Details",
   },
 };
 
@@ -318,6 +328,11 @@ function changeLanguage(lang) {
     desc.textContent = translations[lang].contry_desc[index];
   });
 
+  document.querySelector(".payment h2").textContent =
+    translations[lang].payment;
+  document.querySelector(".payment-info p").textContent =
+    translations[lang].bron;
+
   document.querySelectorAll(".destination-info a").forEach((desc, index) => {
     desc.textContent = translations[lang].learn_more;
   });
@@ -326,13 +341,21 @@ function changeLanguage(lang) {
     desc.textContent = translations[lang].testimonials[index];
   });
 
-  document.querySelectorAll('.testimonial-author h4').forEach((desc, index) => {
+  document.querySelectorAll(".testimonial-author h4").forEach((desc, index) => {
     desc.textContent = translations[lang].authors[index];
-  })
+  });
 
-  document.querySelectorAll('.testimonial-author span').forEach((desc, index) => {
-    desc.textContent = translations[lang].tours[index];
-  })
+  const heading_3 = document.querySelectorAll('.additional-info h3');
+
+  heading_3[0].textContent = translations[lang].info;
+  heading_3[1].textContent = translations[lang].rekvisits;
+
+
+  document
+    .querySelectorAll(".testimonial-author span")
+    .forEach((desc, index) => {
+      desc.textContent = translations[lang].tours[index];
+    });
   // Update contact section
   document.querySelector(".contact h2").textContent =
     translations[lang].contact_title;
